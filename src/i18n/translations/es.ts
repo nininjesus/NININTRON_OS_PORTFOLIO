@@ -53,7 +53,9 @@ export const es = {
       '"Desarrollador web de día, Ñiñin de noche".',
       '"Buscando el punto y coma perdido en mi vida".',
       '"Si compila a la primera, sospecha, no todo puede ser tan bonito".'
-    ]
+    ],
+    githubAriaLabel: 'Perfil de GitHub',
+    linkedinAriaLabel: 'Perfil de LinkedIn'
   },
   about: {
     perfil: {

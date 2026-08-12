@@ -1,3 +1,5 @@
+import { prefersReducedMotion } from './reduced-motion.js';
+
 (function () {
   var osWindow = null;
   var btn = null;
@@ -9,7 +11,7 @@
   var rAF_id = null;
 
   function animateNoise() {
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (prefersReducedMotion()) {
         return;
     }
     noiseFrame++;
@@ -56,15 +58,32 @@
 
   /** Toggle público: botón lo llama directamente */
   window.toggleCRT = function () {
-    var current = localStorage.getItem(CRT_KEY) === 'true';
+    var current = false;
+    try {
+      current = localStorage.getItem(CRT_KEY) === 'true';
+    } catch (e) {
+      console.warn("localStorage no disponible", e);
+    }
+    
     var next = !current;
-    localStorage.setItem(CRT_KEY, String(next));
+    
+    try {
+      localStorage.setItem(CRT_KEY, String(next));
+    } catch (e) {
+      console.warn("localStorage no disponible", e);
+    }
+    
     applyCRT(next);
   };
 
   /** Inicialización: default = OFF, a menos que localStorage diga lo contrario */
   document.addEventListener('DOMContentLoaded', function () {
-    var saved = localStorage.getItem(CRT_KEY);
+    var saved = null;
+    try {
+      saved = localStorage.getItem(CRT_KEY);
+    } catch (e) {
+      console.warn("localStorage no disponible", e);
+    }
     var enabled = saved === 'true'; /* Arranca desactivado si no hay valor guardado */
     applyCRT(enabled);
 

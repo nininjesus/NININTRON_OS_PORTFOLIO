@@ -3,6 +3,7 @@ import Panel from '../ui/Panel.astro';
 import PanelMain from '../ui/PanelMain.astro';
 import Output from '../primitives/Output.astro';
 import TerminalHeader from '../primitives/TerminalHeader.astro';
+import Separator from '../primitives/Separator.astro';
 import { t } from '../../i18n/index';
 
 interface Props {
@@ -23,13 +24,13 @@ const ariaLabel = t(lang, 'aria.sobre_mi');
     <TerminalHeader command={commandTitle} />
     
     <div class="terminal-content-list">
-      <hr class="terminal-separator" data-cli-line="reveal" />
+      <Separator />
       {aboutGroups.map((group, index) => (
         <>
           {group.map((item) => (
             <Output text={`${item.label}: ${item.value}`} />
           ))}
-          {index < aboutGroups.length - 1 && <hr class="terminal-separator" data-cli-line="reveal" />}
+          {index < aboutGroups.length - 1 && <Separator />}
         </>
       ))}
     </div>

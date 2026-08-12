@@ -1,7 +1,7 @@
 .statusbar {
   background-color: var(--bg-terminal);
   border-top: var(--stroke-width) solid var(--border-dim);
-  height: 32px;
+  height: var(--statusbar-height);
   width: 100%;
   position: relative;
   z-index: 120;

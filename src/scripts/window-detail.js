@@ -75,43 +75,7 @@ export function initWindowManager() {
     if (topWin) closeWindow(topWin);
   });
 
-  document.addEventListener('mousemove', (e) => {
-    if (!activeDragWin) return;
-    const win = activeDragWin;
-    win._hasDragged = true;
 
-    const containerRect = win.closest('.panel').getBoundingClientRect();
-
-    let newLeft = dragState.startWinLeft + (e.clientX - dragState.startMouseX);
-    const maxLeft = containerRect.width - win.offsetWidth;
-
-    // En minimizado aplicamos detección de colisión con otras ventanas minimizadas
-    if (win.dataset.state === 'minimized') {
-      newLeft = getClampedMinimizedLeft(win, newLeft, containerRect);
-      win.style.left = `${newLeft}px`;
-    } else {
-      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-      win.style.left = `${(newLeft / containerRect.width) * 100}%`;
-    }
-
-    // El eje vertical solo se mueve si la ventana está en estado normal.
-    if (win.dataset.state === 'normal') {
-      let newTop = dragState.startWinTop + (e.clientY - dragState.startMouseY);
-      const maxTop = containerRect.height - win.offsetHeight;
-      newTop = Math.max(0, Math.min(newTop, maxTop));
-      win.style.top = `${(newTop / containerRect.height) * 100}%`;
-    }
-  });
-
-  document.addEventListener('mouseup', () => {
-    if (!activeDragWin) return;
-    const win = activeDragWin;
-    activeDragWin = null;
-    win.style.transition = '';
-    document.body.style.userSelect = '';
-    // Restablecer el flag en el siguiente tick para que el evento click lo pueda leer
-    setTimeout(() => { win._hasDragged = false; }, 0);
-  });
 }
 
 function recalculateAllWindowPositions() {
@@ -245,7 +209,7 @@ function closeWindow(win) {
   win.setAttribute('inert', '');
   win.style.removeProperty('z-index');
   const container = win.closest('.panel');
-  if (container && window.innerWidth <= 768) {
+  if (container && window.innerWidth <= MOBILE_BREAKPOINT) {
     recalculateMinimizedPositions(container);
   }
 
@@ -282,7 +246,7 @@ function minimizeWindow(win) {
   // el valor sea correcto independientemente del estado anterior.
   const container = win.closest('.panel');
   if (container) {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
       recalculateMinimizedPositions(container);
     } else {
       const cH = container.offsetHeight;
@@ -335,7 +299,7 @@ function restoreWindow(win) {
   updateMaximizeButton(win);
 
   const container = win.closest('.panel');
-  if (container && window.innerWidth <= 768) {
+  if (container && window.innerWidth <= MOBILE_BREAKPOINT) {
     recalculateMinimizedPositions(container);
   }
 }
@@ -352,7 +316,7 @@ function recalculateMinimizedPositions(container) {
   const minimizedWins = Array.from(container.querySelectorAll('.window-detail[data-state="minimized"]'));
   const cH = container.offsetHeight;
   
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= MOBILE_BREAKPOINT) {
     let currentTop = cH;
     minimizedWins.forEach(win => {
       const wH = win.offsetHeight;
@@ -494,10 +458,48 @@ const dragState = {
   startMouseX: 0,
   startMouseY: 0,
   startWinLeft: 0,
-  startWinTop: 0
+  startWinTop: 0,
+  containerRect: null
 };
 
+function handleDragMove(e) {
+  if (!activeDragWin) return;
+  const win = activeDragWin;
+  win._hasDragged = true;
 
+  const containerRect = dragState.containerRect;
+
+  let newLeft = dragState.startWinLeft + (e.clientX - dragState.startMouseX);
+  const maxLeft = containerRect.width - win.offsetWidth;
+
+  if (win.dataset.state === 'minimized') {
+    newLeft = getClampedMinimizedLeft(win, newLeft, containerRect);
+    win.style.left = `${newLeft}px`;
+  } else {
+    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+    win.style.left = `${(newLeft / containerRect.width) * 100}%`;
+  }
+
+  if (win.dataset.state === 'normal') {
+    let newTop = dragState.startWinTop + (e.clientY - dragState.startMouseY);
+    const maxTop = containerRect.height - win.offsetHeight;
+    newTop = Math.max(0, Math.min(newTop, maxTop));
+    win.style.top = `${(newTop / containerRect.height) * 100}%`;
+  }
+}
+
+function handleDragEnd() {
+  if (!activeDragWin) return;
+  const win = activeDragWin;
+  activeDragWin = null;
+  win.style.transition = '';
+  document.body.style.userSelect = '';
+  
+  document.removeEventListener('mousemove', handleDragMove);
+  document.removeEventListener('mouseup', handleDragEnd);
+
+  setTimeout(() => { win._hasDragged = false; }, 0);
+}
 
 function initDrag(win) {
   const header = win.querySelector('.window-detail-header');
@@ -511,6 +513,7 @@ function initDrag(win) {
     bringToFront(win);
 
     const containerRect = win.closest('.panel').getBoundingClientRect();
+    dragState.containerRect = containerRect;
     const winRect       = win.getBoundingClientRect();
 
     dragState.startWinLeft = winRect.left - containerRect.left;
@@ -532,6 +535,9 @@ function initDrag(win) {
     win.style.transform = 'none';
     win.style.transition = 'none';
     document.body.style.userSelect = 'none';
+    
+    document.addEventListener('mousemove', handleDragMove);
+    document.addEventListener('mouseup', handleDragEnd);
 
     e.preventDefault();
   });

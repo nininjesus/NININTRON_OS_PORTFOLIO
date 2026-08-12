@@ -62,7 +62,7 @@
 
 /* Indicación explícita para navegación por teclado */
 .cmd-input-field:focus-visible {
-  background-color: rgba(139, 35, 35, 0.05); /* Tinte sutil para indicar caja activa */
+  background-color: var(--fg-primary-alpha-05); /* Tinte sutil para indicar caja activa */
 }
 
 /* Adaptación móvil */

@@ -1,0 +1,5 @@
+/* Styles for SectionProyectos */
+.proyectos-list {
+  display: flex;
+  flex-direction: column;
+}

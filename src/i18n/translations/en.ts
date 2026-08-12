@@ -53,7 +53,9 @@ export const en = {
       '"Web developer by day, Ñiñin by night".',
       '"Looking for the lost semicolon in my life".',
       '"If it compiles on the first try, be suspicious, not everything can be that beautiful".'
-    ]
+    ],
+    githubAriaLabel: 'GitHub profile',
+    linkedinAriaLabel: 'LinkedIn profile'
   },
   about: {
     perfil: {

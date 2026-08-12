@@ -32,6 +32,9 @@
 @import './components/section-ninin.css';
 @import './components/section-contacto.css';
 @import './components/section-transition.css';
+@import './components/section-proyectos.css';
+@import './components/section-about.css';
+@import './components/section-help.css';
 
 /* Typography base rules */
 h1, h2, h3, h4, h5, h6 {
@@ -102,4 +105,10 @@ button, input, textarea {
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+}
+
+.visually-hidden-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
 }

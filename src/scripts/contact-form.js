@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       resultWrapper.classList.remove("success", "error");
       resultWrapper.classList.add("loading");
-      result.innerHTML = msgSending;
+      result.textContent = msgSending;
 
       fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -36,22 +36,29 @@ document.addEventListener("DOMContentLoaded", () => {
         body: json,
       })
         .then(async (response) => {
-          let json = await response.json();
-          resultWrapper.classList.remove("loading");
-          if (response.status == 200) {
-            resultWrapper.classList.add("success");
-            result.innerHTML = json.message;
-          } else {
-            console.error(response);
+          try {
+            let json = await response.json();
+            resultWrapper.classList.remove("loading");
+            if (response.ok) {
+              resultWrapper.classList.add("success");
+              result.textContent = json.message;
+            } else {
+              console.error(response);
+              resultWrapper.classList.add("error");
+              result.textContent = json.message;
+            }
+          } catch (error) {
+            console.error("Error parsing response:", error);
+            resultWrapper.classList.remove("loading");
             resultWrapper.classList.add("error");
-            result.innerHTML = json.message;
+            result.textContent = msgError;
           }
         })
         .catch((error) => {
-          console.error(error);
+          console.error("Fetch error:", error);
           resultWrapper.classList.remove("loading");
           resultWrapper.classList.add("error");
-          result.innerHTML = msgError;
+          result.textContent = msgError;
         })
         .then(function () {
           form.reset();

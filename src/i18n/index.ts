@@ -1,5 +1,6 @@
 import { es } from './translations/es';
 import { en } from './translations/en';
+import { SITE_URL } from '../data/site.js';
 
 const translations = { es, en };
 
@@ -27,9 +28,11 @@ export function t(lang: 'es' | 'en', key: string): string | any {
 }
 
 export function getAlternateUrls(): { href: string; hreflang: string }[] {
+  // Elimina la barra final si existe
+  const baseUrl = SITE_URL.endsWith('/') ? SITE_URL.slice(0, -1) : SITE_URL;
   return [
-    { href: 'https://ninin.online/es', hreflang: 'es' },
-    { href: 'https://ninin.online/en', hreflang: 'en' },
-    { href: 'https://ninin.online', hreflang: 'x-default' }
+    { href: `${baseUrl}/es`, hreflang: 'es' },
+    { href: `${baseUrl}/en`, hreflang: 'en' },
+    { href: baseUrl, hreflang: 'x-default' }
   ];
 }

@@ -1,12 +1,14 @@
 // src/scripts/cli-entrance.js
 
+import { prefersReducedMotion } from './reduced-motion.js';
+
 const CLI_CHAR_SPEED   = 40;  // ms/char — velocidad constante del typewriter
 const CLI_LINE_DURATION = 300; // ms — fade-in para outputs
 const CLI_BASE_DELAY    = 150; // ms — escalonamiento entre líneas
 
 export function playCLIEntrance(sectionEl) {
   // Respetar prefers-reduced-motion
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = prefersReducedMotion();
   
   // Seleccionar elementos animables en orden DOM
   const lines = sectionEl.querySelectorAll('[data-cli-line]');

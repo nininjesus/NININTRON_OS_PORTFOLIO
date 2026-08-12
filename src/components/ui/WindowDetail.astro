@@ -1,5 +1,7 @@
 ---
+import '../../styles/components/window-detail.css';
 import Btn from '../primitives/Btn.astro';
+import Separator from '../primitives/Separator.astro';
 import { t } from '../../i18n/index';
 
 interface Props {
@@ -97,7 +99,7 @@ const hasPreview = urlPreview && urlPreview !== '#' && !urlPreview.startsWith('#
         <span class="detail-val"> {year}</span>
       </p>
 
-      <hr class="project-detail-separator" aria-hidden="true" />
+      <Separator />
 
       <p class="project-detail-desc">{description}</p>
 
