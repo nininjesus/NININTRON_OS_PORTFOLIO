@@ -8,34 +8,37 @@ import PanelNav from '../components/ui/PanelNav.astro';
 import Statusbar from '../components/primitives/Statusbar.astro';
 import SectionTransition from '../components/sections/SectionTransition.astro';
 import { t, getAlternateUrls } from '../i18n/index';
+import { SITE_URL, GITHUB_URL, LINKEDIN_URL, AUTHOR_NAME } from '../data/site.js';
+import defaultOgImage from '../assets/images/og-image.png';
 
 interface Props {
   lang: 'es' | 'en';
   canonicalUrl?: string;
-  ogImage?: string;
+  ogImage?: string | ImageMetadata;
 }
 
 const { 
   lang,
   canonicalUrl = Astro.url,
-  ogImage = "/images/og-image.png"
+  ogImage = defaultOgImage
 } = Astro.props;
 
 const title = t(lang, 'meta.title');
 const description = t(lang, 'meta.description');
-const alternateUrls = getAlternateUrls(lang);
+const alternateUrls = getAlternateUrls();
 const ogLocale = lang === 'en' ? 'en_US' : 'es_VE';
 
-const siteUrl = Astro.site ? Astro.site.toString() : 'https://ninin.online';
+const siteUrl = Astro.site ? Astro.site.toString() : SITE_URL;
 const finalCanonicalUrl = new URL(canonicalUrl, siteUrl).toString().replace(/\/$/, '');
-const finalOgImage = new URL(ogImage, siteUrl).toString();
+const ogImageSrc = typeof ogImage === 'string' ? ogImage : ogImage.src;
+const finalOgImage = new URL(ogImageSrc, siteUrl).toString();
 
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Jesús Ninin",
-  "url": "https://ninin.online",
-  "jobTitle": "UI/UX & Web Developer",
+  "name": AUTHOR_NAME,
+  "url": SITE_URL,
+  "jobTitle": t(lang, 'meta.jobTitle'),
   "description": description,
   "knowsAbout": [
     "Frontend Development",
@@ -44,8 +47,8 @@ const schemaData = {
     "Web Development"
   ],
   "sameAs": [
-    "https://github.com/nininjesus",
-    "https://www.linkedin.com/in/ninin-dev"
+    GITHUB_URL,
+    LINKEDIN_URL
   ]
 };
 ---
@@ -60,7 +63,7 @@ const schemaData = {
   <meta name="theme-color" content="#0a0a0a" />
   <meta name="color-scheme" content="dark" />
   <meta name="robots" content="index, follow" />
-  <meta name="author" content="Jesús Ninin" />
+  <meta name="author" content={AUTHOR_NAME} />
   <link rel="canonical" href={finalCanonicalUrl} />
   {alternateUrls.map((alt) => (
     <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
@@ -76,7 +79,7 @@ const schemaData = {
   <meta property="og:description" content={description} />
   <meta property="og:image" content={finalOgImage} />
   <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="600" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Jesús Ninin - UI/UX & Web Developer Portfolio" />
   <meta property="og:site_name" content="Jesús Ninin Portfolio" />
   <meta property="og:locale" content={ogLocale} />
@@ -92,85 +95,10 @@ const schemaData = {
   <!-- JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
   <!-- CRT Init: lee localStorage antes del primer paint para evitar flash -->
-  <script>
-    (function () {
-      var osWindow = null;
-      var btn = null;
-      var CRT_KEY = 'crt-enabled';
-
-      var noiseFrame = 0;
-      var noiseSeed = 1;
-      var turbulence = null;
-      var rAF_id = null;
-
-      function animateNoise() {
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            return;
-        }
-        noiseFrame++;
-        if (noiseFrame % 3 === 0) { // ~20fps
-          noiseSeed = (noiseSeed % 999) + 1;
-          if (turbulence) turbulence.setAttribute('seed', noiseSeed);
-        }
-        if (!osWindow) osWindow = document.querySelector('.os-window');
-        if (osWindow && osWindow.classList.contains('crt-on')) {
-          rAF_id = requestAnimationFrame(animateNoise);
-        }
-      }
-
-      /** Aplica/remueve el efecto y sincroniza el botón */
-      function applyCRT(enabled) {
-        if (!osWindow) osWindow = document.querySelector('.os-window');
-        if (!btn) btn = document.getElementById('crt-toggle-btn');
-        if (!turbulence) turbulence = document.getElementById('crt-turbulence');
-
-        if (enabled) {
-          osWindow.classList.add('crt-on');
-          if (btn) {
-            btn.classList.add('is-active');
-            btn.setAttribute('aria-pressed', 'true');
-            btn.setAttribute('aria-label', 'Desactivar efecto de monitor CRT');
-          }
-          if (rAF_id) cancelAnimationFrame(rAF_id);
-          rAF_id = requestAnimationFrame(animateNoise);
-        } else {
-          osWindow.classList.remove('crt-on');
-          if (btn) {
-            btn.classList.remove('is-active');
-            btn.setAttribute('aria-pressed', 'false');
-            btn.setAttribute('aria-label', 'Activar efecto de monitor CRT');
-          }
-          if (rAF_id) {
-            cancelAnimationFrame(rAF_id);
-            rAF_id = null;
-          }
-        }
-      }
-
-      /** Toggle público: botón lo llama directamente */
-      window.toggleCRT = function () {
-        var current = localStorage.getItem(CRT_KEY) === 'true';
-        var next = !current;
-        localStorage.setItem(CRT_KEY, String(next));
-        applyCRT(next);
-      };
-
-      /** Inicialización: default = OFF, a menos que localStorage diga lo contrario */
-      document.addEventListener('DOMContentLoaded', function () {
-        var saved = localStorage.getItem(CRT_KEY);
-        var enabled = saved === 'true'; /* Arranca desactivado si no hay valor guardado */
-        applyCRT(enabled);
-
-        var toggleBtn = document.getElementById('crt-toggle-btn');
-        if (toggleBtn) {
-          toggleBtn.addEventListener('click', window.toggleCRT);
-        }
-      });
-    })();
-  </script>
+  <script src="../scripts/crt.js"></script>
 </head>
 <body>
-  <svg aria-hidden="true" style="position:absolute;width:0;height:0">
+  <svg aria-hidden="true" class="visually-hidden-svg">
     <filter id="crt-chromatic" x="-5%" y="-5%" width="110%" height="110%">
       <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="red-channel"/>
       <feOffset in="red-channel" dx="2" dy="1" result="red-shifted"/>
@@ -202,7 +130,7 @@ const schemaData = {
     
     <div class="app-layout">
       <!-- Left Column: Sidebar -->
-      <aside class="layout-sidebar">
+      <aside class="layout-sidebar" id="layout-sidebar">
         <header class="panel-header">
           <span class="panel-indicator" aria-hidden="true">▓</span>
           <h2 class="panel-title">NAV.EXE</h2>
@@ -236,186 +164,7 @@ const schemaData = {
   </script>
 
   <script>
-    import { playCLIEntrance, resetCLIEntrance } from '../scripts/cli-entrance.js';
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const MOBILE_BREAKPOINT = 768;
-      const sections = document.querySelectorAll('section.panel');
-      const titleElement = document.getElementById('active-section-title');
-      const navLinks = document.querySelectorAll('[data-nav-link]');
-      const scrollContainer = document.getElementById('sections-container');
-
-      if (!scrollContainer) return;
-
-      const observerOptions = {
-        root: scrollContainer,
-        rootMargin: '0px',
-        threshold: 0.5
-      };
-
-      // Observador para la navegación, títulos y accesibilidad (Continuo)
-      const layoutObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Manejar foco de teclado con inert
-            sections.forEach(sec => sec.setAttribute('inert', ''));
-            entry.target.removeAttribute('inert');
-
-            // Actualizar Título
-            const newTitle = entry.target.getAttribute('data-title');
-            if (newTitle && titleElement) {
-              titleElement.textContent = newTitle;
-            }
-
-            // Actualizar Nav Activo
-            const activeId = entry.target.getAttribute('id');
-            navLinks.forEach(link => {
-              link.classList.remove('is-active');
-              link.removeAttribute('aria-current');
-              if (link.getAttribute('href') === `#${activeId}`) {
-                link.classList.add('is-active');
-                link.setAttribute('aria-current', 'page');
-              }
-            });
-          }
-        });
-      }, observerOptions);
-
-      // Observador para la animación CLI (Una sola vez)
-      const cliObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            resetCLIEntrance(entry.target);
-            playCLIEntrance(entry.target);
-            cliObserver.unobserve(entry.target); // Dejar de observar la sección
-          }
-        });
-      }, observerOptions);
-
-      sections.forEach(section => {
-        layoutObserver.observe(section);
-        cliObserver.observe(section);
-      });
-      
-      // Mobile Menu Toggle
-      const menuBtn = document.getElementById('menu-btn');
-      const sidebar = document.querySelector('.layout-sidebar');
-      
-      if (menuBtn && sidebar) {
-        menuBtn.addEventListener('click', () => {
-          const isOpen = sidebar.classList.contains('is-open');
-          if (isOpen) {
-            sidebar.classList.remove('is-open');
-            menuBtn.setAttribute('aria-expanded', 'false');
-          } else {
-            sidebar.classList.add('is-open');
-            menuBtn.setAttribute('aria-expanded', 'true');
-          }
-        });
-
-        // Close sidebar when clicking a nav link (mobile)
-        navLinks.forEach(link => {
-          link.addEventListener('click', () => {
-            if (window.innerWidth <= MOBILE_BREAKPOINT) {
-              sidebar.classList.remove('is-open');
-              menuBtn.setAttribute('aria-expanded', 'false');
-            }
-          });
-        });
-
-        // Close sidebar when clicking outside (mobile)
-        document.addEventListener('click', (event) => {
-          if (window.innerWidth <= MOBILE_BREAKPOINT && sidebar.classList.contains('is-open')) {
-            if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
-              sidebar.classList.remove('is-open');
-              menuBtn.setAttribute('aria-expanded', 'false');
-            }
-          }
-        });
-      }
-
-      // Scroll con JS usando comportamiento instantáneo (estilo OS retro)
-      navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute('href').substring(1);
-          const targetSection = document.getElementById(targetId);
-          if (targetSection && scrollContainer) {
-            if (window.innerWidth <= MOBILE_BREAKPOINT) {
-              scrollContainer.scrollTo({
-                top: targetSection.offsetTop,
-                behavior: 'instant'
-              });
-            } else {
-              scrollContainer.scrollTo({
-                left: targetSection.offsetLeft,
-                behavior: 'instant'
-              });
-            }
-            // Actualizar URL sin causar scroll nativo del browser
-            history.pushState({ sectionId: targetId }, '', `#${targetId}`);
-          }
-        });
-      });
-
-      // Soporte para el botón Atrás / Adelante del browser
-      window.addEventListener('popstate', (event) => {
-        const sectionId = event.state?.sectionId ?? location.hash.replace('#', '');
-        if (!sectionId) return;
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection && scrollContainer) {
-          if (window.innerWidth <= MOBILE_BREAKPOINT) {
-            scrollContainer.scrollTo({ top: targetSection.offsetTop, behavior: 'instant' });
-          } else {
-            scrollContainer.scrollTo({ left: targetSection.offsetLeft, behavior: 'instant' });
-          }
-        }
-      });
-
-      // Re-centrar la sección activa al cambiar entre Desktop (eje X) y Mobile (eje Y)
-      let lastWidth = window.innerWidth;
-      let resizeTimeout;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          const currentWidth = window.innerWidth;
-          const crossedBreakpoint = (lastWidth > MOBILE_BREAKPOINT && currentWidth <= MOBILE_BREAKPOINT) || (lastWidth <= MOBILE_BREAKPOINT && currentWidth > MOBILE_BREAKPOINT);
-          
-          if (crossedBreakpoint) {
-            const activeLink = document.querySelector('[data-nav-link].is-active');
-            if (activeLink) {
-              const targetId = activeLink.getAttribute('href').substring(1);
-              const targetSection = document.getElementById(targetId);
-              if (targetSection && scrollContainer) {
-                if (currentWidth <= MOBILE_BREAKPOINT) {
-                  scrollContainer.scrollTo({ top: targetSection.offsetTop, behavior: 'instant' });
-                } else {
-                  scrollContainer.scrollTo({ left: targetSection.offsetLeft, behavior: 'instant' });
-                }
-              }
-            }
-          }
-          lastWidth = currentWidth;
-        }, 100);
-      });
-
-      // Deep linking: si la URL ya tiene un hash al cargar, ir a esa sección
-      const initialHash = location.hash.replace('#', '');
-      const initialSection = initialHash ? document.getElementById(initialHash) : null;
-
-      if (initialSection) {
-        // Registrar el estado inicial en el historial
-        history.replaceState({ sectionId: initialHash }, '', `#${initialHash}`);
-        if (window.innerWidth <= MOBILE_BREAKPOINT) {
-          scrollContainer.scrollTo({ top: initialSection.offsetTop, behavior: 'instant' });
-        } else {
-          scrollContainer.scrollTo({ left: initialSection.offsetLeft, behavior: 'instant' });
-        }
-      } else if (window.innerWidth <= MOBILE_BREAKPOINT && sections.length > 0) {
-        scrollContainer.scrollTo({ top: 0, behavior: 'instant' });
-      }
-
-    });
+    import '../scripts/layout-manager.js';
   </script>
 </body>
 </html>

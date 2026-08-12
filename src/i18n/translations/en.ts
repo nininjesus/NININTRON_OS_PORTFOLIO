@@ -1,21 +1,27 @@
 export const en = {
   meta: {
     title: 'NININTRON_OS',
-    description: 'Personal Portfolio of Jesus Ninin - Information Engineer'
+    description: 'Personal Portfolio of Jesus Ninin - Information Engineer, UI/UX, Frontend, React, and Web Development Specialist',
+    jobTitle: 'Information Engineer | UI/UX & Web Developer'
   },
   aria: {
+    ninin: 'Ninin section',
     bienvenida: 'Welcome section',
     contacto: 'Contact section',
     sobre_mi: 'About me section',
     proyectos: 'Projects section',
     ayuda: 'Help section',
     crtToggle: 'Toggle CRT monitor effect',
+    crtOn: 'Enable CRT monitor effect',
+    crtOff: 'Disable CRT monitor effect',
     menuToggle: 'Open navigation menu',
     langToggle: 'Change language',
     windowMin: 'Minimize window',
     windowMax: 'Maximize window',
+    windowRestore: 'Restore window',
     windowClose: 'Close window',
-    windowControls: 'Window controls'
+    windowControls: 'Window controls',
+    navPrincipal: 'Main navigation'
   },
   nav: {
     ninin: {
@@ -50,7 +56,9 @@ export const en = {
       '"Web developer by day, Ñiñin by night".',
       '"Looking for the lost semicolon in my life".',
       '"If it compiles on the first try, be suspicious, not everything can be that beautiful".'
-    ]
+    ],
+    githubAriaLabel: 'GitHub profile',
+    linkedinAriaLabel: 'LinkedIn profile'
   },
   about: {
     perfil: {
@@ -111,6 +119,7 @@ export const en = {
     email: 'EMAIL:',
     subject: 'SUBJECT:',
     messageLabel: 'Message:',
+    messageAriaLabel: 'Type your message',
     submit: 'SEND',
     status: {
       sending: 'Sending...',

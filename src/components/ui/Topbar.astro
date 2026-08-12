@@ -19,10 +19,10 @@ const ariaLangToggle = t(lang, 'aria.langToggle');
     <span class="user-label">[usr:ninin]</span>
     
     <!-- Language Switcher -->
-    <div class="lang-switcher" aria-label={ariaLangToggle}>
+    <nav class="lang-switcher" aria-label={ariaLangToggle}>
       <a href="/es" class={`lang-btn ${lang === 'es' ? 'is-active' : ''}`} aria-current={lang === 'es' ? 'true' : undefined}>[ES]</a>
       <a href="/en" class={`lang-btn ${lang === 'en' ? 'is-active' : ''}`} aria-current={lang === 'en' ? 'true' : undefined}>[EN]</a>
-    </div>
+    </nav>
 
     <!-- CRT Monitor Effect Toggle -->
     <button
@@ -30,7 +30,9 @@ const ariaLangToggle = t(lang, 'aria.langToggle');
       id="crt-toggle-btn"
       class="crt-toggle"
       aria-pressed="false"
-      aria-label="Activar efecto de monitor CRT"
+      aria-label={t(lang, 'aria.crtToggle')}
+      data-aria-on={t(lang, 'aria.crtOn')}
+      data-aria-off={t(lang, 'aria.crtOff')}
     >
       <span aria-hidden="true">[CRT]</span>
     </button>
@@ -41,7 +43,7 @@ const ariaLangToggle = t(lang, 'aria.langToggle');
       class="menu-toggle"
       aria-expanded="false" 
       aria-controls="panel-nav" 
-      aria-label="Abrir menú de navegación"
+      aria-label={t(lang, 'aria.menuToggle')}
     >
       <span aria-hidden="true">[= MENU]</span>
     </button>

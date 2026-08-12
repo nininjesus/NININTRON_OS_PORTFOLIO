@@ -12,6 +12,8 @@
   --fg-text: #c4c4c4;
   --fg-text-muted: #6b6b6b;
   --fg-dim: #3a3a3a;
+  --fg-primary-alpha-05: rgba(139, 35, 35, 0.05);
+  --fg-primary-alpha-10: rgba(139, 35, 35, 0.1);
 
   /* === GRUPO border === */
   --border-default: #8b2323;
@@ -24,9 +26,8 @@
   --font-size-h1: clamp(28px, 5vw + 10px, 48px); --line-height-h1: 1.2; --font-weight-h1: 700;
   --font-size-h2: clamp(24px, 4vw + 8px, 32px); --line-height-h2: 1.3; --font-weight-h2: 700;
   --font-size-h3: clamp(18px, 3vw + 6px, 24px); --line-height-h3: 1.3; --font-weight-h3: 600;
-  --font-size-body-lg: clamp(14px, 2vw + 4px, 18px); --line-height-body-lg: 1.6; --font-weight-body-lg: 400;
   --font-size-body: clamp(11px, 2vw + 2px, 16px); --line-height-body: 1.6; --font-weight-body: 400;
-  --font-size-prompt: clamp(11px, 2vw + 2px, 16px); --line-height-prompt: 1.6; --font-weight-prompt: 400;
+
   --font-size-caption: clamp(10px, 1.5vw + 2px, 14px); --line-height-caption: 1.4; --font-weight-caption: 400;
   --font-size-code: clamp(10px, 1.5vw + 2px, 14px); --line-height-code: 1.4; --font-weight-code: 400;
 
@@ -41,16 +42,23 @@
 
   /* Tamaños / Grid */
   --topbar-height: 48px;
+  --statusbar-height: 32px;
+  /* Limitación CSS: Los tokens definidos aquí no pueden ser usados directamente en @media queries
+     (ej. @media (max-width: var(--bp-tablet)) no es válido). Se deben usar los valores hardcodeados
+     (768px, 402px) que correspondan a estas variables en los archivos CSS. */
   --bp-desktop: 1440px;
   --bp-tablet: 768px;
   --bp-phone: 402px;
+
+  /* === GRUPO shadow === */
+  --shadow-window: 0 8px 32px rgba(0, 0, 0, 0.7);
+  --shadow-window-min: 0 -4px 16px rgba(0, 0, 0, 0.5);
 
   --layout-sidebar-desktop: 400px;
   --layout-sidebar-tablet: 342px;
 
   /* Radios */
   --radius-component: 4.5px;
-  --radius-swatch: 5px;
 
   /* Stroke / Border */
   --stroke-width: 0.64px;

@@ -1,3 +1,5 @@
+import { prefersReducedMotion } from './reduced-motion.js';
+
 /**
  * Rota el texto de un elemento HTML dado un arreglo de strings.
  * 
@@ -13,7 +15,7 @@ export function rotateText(elementId, textArray, interval = 5000) {
   }
   
   // Respetar preferencias de movimiento reducido del usuario
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+  if (prefersReducedMotion()) return null;
   
   let currentIndex = 0;
   

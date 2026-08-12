@@ -1,12 +1,13 @@
 ---
-import '../../styles/components/section-proyectos.css';
 import Panel from '../ui/Panel.astro';
 import PanelMain from '../ui/PanelMain.astro';
 import PreviewCard from '../ui/PreviewCard.astro';
 import WindowDetail from '../ui/WindowDetail.astro';
 import { projects } from '../../data/projects.js';
 import TerminalHeader from '../primitives/TerminalHeader.astro';
+import Separator from '../primitives/Separator.astro';
 import { t } from '../../i18n/index';
+import '../../styles/components/section-proyectos.css';
 
 interface Props {
   lang?: 'es' | 'en';
@@ -37,7 +38,7 @@ const ariaLabel = t(lang, 'aria.proyectos');
             repo={project.urlPreview}
           />
           {index < projects.length - 1 && (
-            <hr class="terminal-separator" data-cli-line="reveal" />
+            <Separator />
           )}
         </>
       )})}

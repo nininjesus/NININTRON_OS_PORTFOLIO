@@ -1,8 +1,7 @@
 <div align="center">
-  <img src="./.github/assets/NININTRON_OS_PORTFOLIO_BANNER.svg" alt="NININTRON OS Portfolio Banner" width="50%" />
+  <img src="./.github/assets/NININTRON_OS_PORTFOLIO_BANNER.svg" alt="NININTRON OS Portfolio Banner" width="100%" />
 </div>
 
-## **Descripción general**
 **NININTRON_OS_PORTFOLIO** es una plataforma interactiva y visual diseñada para presentar proyectos, experiencia y habilidades con una estética única estilo "OS Window" (Sistema Operativo retro-moderno).
 Con este portafolio, los usuarios pueden:
 

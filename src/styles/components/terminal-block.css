@@ -13,32 +13,9 @@
 
 .cursor-symbol {
   color: var(--fg-tertiary);
-  font-family: var(--font-family);
 }
 
-.cursor-blink {
-  display: inline-block;
-  width: 0.6em;
-  height: 1.2em;
-  background-color: var(--fg-primary);
-  color: transparent; /* Oculta el texto '_' si existe */
-  vertical-align: middle;
-  animation: blink-cursor 1s step-end infinite;
-}
 
-.terminal-separator {
-  border: none;
-  border-top: var(--stroke-width) solid var(--border-dim);
-  margin: var(--space-4) 0;
-  width: 50%;
-  align-self: flex-start;
-}
-
-@media (max-width: 768px) {
-  .terminal-separator {
-    width: 100%;
-  }
-}
 
 .terminal-content-list {
   display: flex;
