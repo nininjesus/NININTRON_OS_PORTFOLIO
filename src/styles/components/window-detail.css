@@ -50,7 +50,7 @@
 
   /* Sombra para sensación de profundidad */
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.7),
+    var(--shadow-window),
     0 0 0 1px var(--fg-primary-alpha-10);
 
   /* Transiciones suaves para cambios de estado */
@@ -84,7 +84,7 @@
   width: 300px !important;
   height: auto !important;
   min-height: 0 !important;
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-window-min);
   border-top-color: var(--fg-primary);
   transform: none !important;
 }
@@ -247,11 +247,6 @@
   color: var(--fg-text);
 }
 
-.project-detail-separator {
-  border: none;
-  border-top: var(--stroke-width) solid var(--border-dim);
-  margin: var(--space-3) 0;
-}
 
 .project-detail-desc {
   color: var(--fg-text-muted);

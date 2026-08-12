@@ -43,9 +43,16 @@
   /* Tamaños / Grid */
   --topbar-height: 48px;
   --statusbar-height: 32px;
+  /* Limitación CSS: Los tokens definidos aquí no pueden ser usados directamente en @media queries
+     (ej. @media (max-width: var(--bp-tablet)) no es válido). Se deben usar los valores hardcodeados
+     (768px, 402px) que correspondan a estas variables en los archivos CSS. */
   --bp-desktop: 1440px;
   --bp-tablet: 768px;
   --bp-phone: 402px;
+
+  /* === GRUPO shadow === */
+  --shadow-window: 0 8px 32px rgba(0, 0, 0, 0.7);
+  --shadow-window-min: 0 -4px 16px rgba(0, 0, 0, 0.5);
 
   --layout-sidebar-desktop: 400px;
   --layout-sidebar-tablet: 342px;

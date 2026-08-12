@@ -37,7 +37,8 @@ import { prefersReducedMotion } from './reduced-motion.js';
       if (btn) {
         btn.classList.add('is-active');
         btn.setAttribute('aria-pressed', 'true');
-        btn.setAttribute('aria-label', 'Desactivar efecto de monitor CRT');
+        var ariaOff = btn.getAttribute('data-aria-off') || 'Desactivar efecto de monitor CRT';
+        btn.setAttribute('aria-label', ariaOff);
       }
       if (rAF_id) cancelAnimationFrame(rAF_id);
       rAF_id = requestAnimationFrame(animateNoise);
@@ -47,7 +48,8 @@ import { prefersReducedMotion } from './reduced-motion.js';
       if (btn) {
         btn.classList.remove('is-active');
         btn.setAttribute('aria-pressed', 'false');
-        btn.setAttribute('aria-label', 'Activar efecto de monitor CRT');
+        var ariaOn = btn.getAttribute('data-aria-on') || 'Activar efecto de monitor CRT';
+        btn.setAttribute('aria-label', ariaOn);
       }
       if (rAF_id) {
         cancelAnimationFrame(rAF_id);

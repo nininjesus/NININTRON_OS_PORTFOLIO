@@ -51,13 +51,13 @@ export function initWindowManager() {
   const mainContainer = document.querySelector('.layout-main');
   if (mainContainer) {
     new ResizeObserver(() => {
-      recalculateAllWindowPositions();
+      requestAnimationFrame(() => recalculateAllWindowPositions());
     }).observe(mainContainer);
   } else {
     const container = document.querySelector('#proyectos.panel');
     if (container) {
       new ResizeObserver(() => {
-        recalculateMinimizedPositions(container);
+        requestAnimationFrame(() => recalculateMinimizedPositions(container));
       }).observe(container);
     }
   }
@@ -343,7 +343,10 @@ function updateMaximizeButton(win) {
   if (!btn) return;
   const isMax = win.dataset.state === 'maximized';
   btn.textContent = isMax ? '[▣]' : '[□]';
-  btn.setAttribute('aria-label', isMax ? 'Restaurar ventana' : 'Maximizar ventana');
+  const label = isMax 
+    ? (btn.getAttribute('data-aria-restore') || 'Restaurar ventana') 
+    : (btn.getAttribute('data-aria-maximize') || 'Maximizar ventana');
+  btn.setAttribute('aria-label', label);
 }
 
 // ── Focus Trap ────────────────────────────────────────────

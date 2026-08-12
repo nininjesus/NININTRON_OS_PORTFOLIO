@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+
   const form = document.getElementById("form");
   const resultWrapper = document.getElementById("result-wrapper");
   const result = document.getElementById("result");
@@ -69,4 +69,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
   }
-}, { once: true });

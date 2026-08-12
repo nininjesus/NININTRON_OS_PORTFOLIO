@@ -3,3 +3,7 @@
   display: flex;
   flex-direction: column;
 }
+
+.proyectos-list .cmd-separator {
+  margin: var(--space-4) 0;
+}

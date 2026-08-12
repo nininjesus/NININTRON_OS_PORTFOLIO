@@ -12,10 +12,13 @@ export const es = {
     proyectos: 'Sección de proyectos',
     ayuda: 'Sección de ayuda',
     crtToggle: 'Activar efecto de monitor CRT',
+    crtOn: 'Activar efecto de monitor CRT',
+    crtOff: 'Desactivar efecto de monitor CRT',
     menuToggle: 'Abrir menú de navegación',
     langToggle: 'Cambiar idioma',
     windowMin: 'Minimizar ventana',
     windowMax: 'Maximizar ventana',
+    windowRestore: 'Restaurar ventana',
     windowClose: 'Cerrar ventana',
     windowControls: 'Controles de ventana',
     navPrincipal: 'Navegación principal'

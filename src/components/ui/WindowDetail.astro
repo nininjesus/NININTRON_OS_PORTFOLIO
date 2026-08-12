@@ -39,6 +39,7 @@ const labelPreviewAria = t(lang, 'ui.previewOf').replace('{0}', title);
 const labelControls = t(lang, 'aria.windowControls');
 const labelMin = t(lang, 'aria.windowMin');
 const labelMax = t(lang, 'aria.windowMax');
+const labelRestore = t(lang, 'aria.windowRestore');
 const labelClose = t(lang, 'aria.windowClose');
 
 
@@ -74,6 +75,8 @@ const hasPreview = urlPreview && urlPreview !== '#' && !urlPreview.startsWith('#
         type="button"
         aria-label={labelMax}
         data-action="maximize"
+        data-aria-maximize={labelMax}
+        data-aria-restore={labelRestore}
       >[□]</button>
       <button
         class="window-ctrl window-ctrl--close"
