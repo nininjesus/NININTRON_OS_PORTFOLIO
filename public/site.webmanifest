@@ -1,0 +1,12 @@
+{
+  "name": "NININTRON_OS — Jesús Ninin",
+  "short_name": "NININTRON",
+  "start_url": "/es",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#8b2323",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ]
+}

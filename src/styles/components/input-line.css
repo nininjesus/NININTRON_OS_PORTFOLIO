@@ -23,7 +23,7 @@
 
 .cmd-input-bracket {
   padding-top: 2px;
-  transition: color 0.2s ease;
+  transition: color var(--transition-normal);
 }
 
 .cmd-input-field {
@@ -38,7 +38,7 @@
   padding: 2px var(--space-1) 0 var(--space-1);
   outline: none;
   min-width: 0; /* Permite a flexbox achicar el input en resoluciones muy bajas */
-  transition: border-color 0.2s ease;
+  transition: border-color var(--transition-normal);
 }
 
 /* Evitar que el textarea rompa el ancho estricto arrastrándose */
@@ -75,3 +75,4 @@
     margin-bottom: var(--space-1);
   }
 }
+

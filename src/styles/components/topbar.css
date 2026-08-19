@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding: 0 var(--space-3);
   position: relative;
-  z-index: 110; 
+  z-index: var(--z-topbar); 
 }
 
 .topbar-left, .topbar-right {
@@ -71,8 +71,8 @@
 }
 
 .crt-toggle:focus-visible {
-  outline: 1px solid var(--fg-primary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* Language Switcher */
@@ -102,8 +102,8 @@
 }
 
 .lang-btn:focus-visible {
-  outline: 1px solid var(--fg-primary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* Responsividad Tablet y Phone */

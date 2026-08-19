@@ -69,4 +69,21 @@
   --crt-scanline-alpha:  0.25;                       /* Opacidad scanlines CGA   */
   --crt-curvature:       8px / 6px;                 /* Border-radius curvatura  */
   --crt-vignette-corner: rgba(0, 0, 0, 0.65);       /* Oscuridad esquinas       */
+
+  /* ── Z-Index Scale ── */
+  --z-window:      50;
+  --z-sidebar:     100;
+  --z-topbar:      110;
+  --z-statusbar:   120;
+  --z-overlay:     9998;
+  --z-transition:  9999;
+
+  /* ── Transitions ── */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow:   0.3s ease;
+
+  /* ── Focus ── */
+  --focus-ring: 1px solid var(--fg-primary);
+  --focus-ring-offset: 2px;
 }

@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   background-color: var(--bg-terminal);
-  z-index: 9999; /* Máxima prioridad: debe superponerse a TODO el portafolio (topbar, sidebar) */
+  z-index: var(--z-transition); /* Máxima prioridad: debe superponerse a TODO el portafolio (topbar, sidebar) */
   
   display: flex;
   justify-content: center;
@@ -36,7 +36,7 @@
 .transition-text {
   color: var(--fg-text);
   font-size: var(--font-size-body);
-  font-weight: 700;
+  font-weight: var(--font-weight-h1);
   margin: 0;
   text-transform: uppercase;
 }

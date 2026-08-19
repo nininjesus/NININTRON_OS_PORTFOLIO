@@ -13,7 +13,7 @@
   
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
   outline: none;
   white-space: pre; /* Respeta los espacios de los corchetes [ y ] */
 }
@@ -66,6 +66,9 @@
 
 /* Añadir un outline visible para accesibilidad en foco de teclado */
 .cmd-btn:focus-visible {
-  outline: 1px solid var(--fg-primary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
+
+
+

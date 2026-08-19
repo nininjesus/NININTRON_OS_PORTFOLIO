@@ -6,6 +6,11 @@ import TerminalHeader from '../primitives/TerminalHeader.astro';
 import { t } from '../../i18n/index';
 import { GITHUB_URL, LINKEDIN_URL, AUTHOR_NAME } from '../../data/site.js';
 
+import { Image } from 'astro:assets';
+import githubIcon from '../../assets/icons/github.svg';
+import linkedinIcon from '../../assets/icons/linkedin.svg';
+import nininPhoto from '../../assets/images/ninin-photo.svg';
+
 interface Props {
   lang?: 'es' | 'en';
 }
@@ -29,17 +34,17 @@ const quotes = t(lang, 'ninin.quotes');
         <div class="ninin-social-links" data-cli-line="reveal">
           <!-- Icono GitHub -->
           <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label={t(lang, 'ninin.githubAriaLabel')}>
-            <img src="/icons/github.svg" alt="" aria-hidden="true" width="24" height="24" />
+            <Image src={githubIcon} alt="" aria-hidden="true" width={24} height={24} loading="eager" />
           </a>
           <!-- Icono LinkedIn -->
           <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label={t(lang, 'ninin.linkedinAriaLabel')}>
-            <img src="/icons/linkedin.svg" alt="" aria-hidden="true" width="24" height="24" />
+            <Image src={linkedinIcon} alt="" aria-hidden="true" width={24} height={24} loading="eager" />
           </a>
         </div>
       </div>
       
       <div class="ninin-photo-col">
-        <img src="/images/ninin-photo.svg" alt="" aria-hidden="true" class="ascii-photo" width="1192" height="1195" loading="lazy" data-cli-line="reveal" />
+        <Image src={nininPhoto} alt="" aria-hidden="true" class="ascii-photo" width={1192} height={1195} loading="eager" data-cli-line="reveal" />
       </div>
     </div>
     
