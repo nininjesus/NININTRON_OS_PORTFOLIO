@@ -5,7 +5,6 @@
 /* Typography base rules */
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-h3);
-  margin: 0;
 }
 
 .cmd-line {
@@ -64,8 +63,8 @@ button, input, textarea {
 
 /* Scrollbar styles for Webkit (Chrome, Edge, Safari) */
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: var(--space-1);
+  height: var(--space-1);
 }
 
 *::-webkit-scrollbar-track {

@@ -57,7 +57,7 @@
   cursor: pointer;
   padding: 2px 6px;
   letter-spacing: 0.05em;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .crt-toggle:hover {
@@ -89,7 +89,7 @@
   text-decoration: none;
   padding: 2px 4px;
   border: var(--stroke-width) solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .lang-btn:hover {

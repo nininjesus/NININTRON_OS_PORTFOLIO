@@ -52,7 +52,7 @@ const quotes = t(lang, 'ninin.quotes');
 </Panel>
 
 <script>
-  import { rotateText } from '../../scripts/textRotator.js';
+  import { rotateText } from '../../scripts/text-rotator.js';
 
   const quoteElement = document.getElementById('dynamic-quote');
   if (quoteElement && quoteElement.dataset.quotes) {
@@ -60,7 +60,6 @@ const quotes = t(lang, 'ninin.quotes');
       const quotes = JSON.parse(quoteElement.dataset.quotes);
       rotateText('dynamic-quote', quotes, 5000);
     } catch (e) {
-      console.error(e);
       quoteElement.textContent = '"¿Como hago para ser millonario en menos de 2 minutos? Buscar Google".';
     }
   }

@@ -1,0 +1,23 @@
+---
+// Redirect to user's preferred language.
+// Defaults to /es.
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    const browserLang = navigator.language || navigator.userLanguage;
+    if (browserLang && browserLang.startsWith('en')) {
+      window.location.replace('/en');
+    } else {
+      window.location.replace('/es');
+    }
+  </script>
+  <meta http-equiv="refresh" content="0;url=/es" />
+</head>
+<body>
+  Redirecting...
+</body>
+</html>

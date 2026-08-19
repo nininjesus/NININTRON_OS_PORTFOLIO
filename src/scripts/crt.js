@@ -64,7 +64,7 @@ import { prefersReducedMotion } from './reduced-motion.js';
     try {
       current = localStorage.getItem(CRT_KEY) === 'true';
     } catch (e) {
-      console.warn("localStorage no disponible", e);
+      // localStorage no disponible
     }
     
     var next = !current;
@@ -72,7 +72,7 @@ import { prefersReducedMotion } from './reduced-motion.js';
     try {
       localStorage.setItem(CRT_KEY, String(next));
     } catch (e) {
-      console.warn("localStorage no disponible", e);
+      // localStorage no disponible
     }
     
     applyCRT(next);
@@ -84,7 +84,7 @@ import { prefersReducedMotion } from './reduced-motion.js';
     try {
       saved = localStorage.getItem(CRT_KEY);
     } catch (e) {
-      console.warn("localStorage no disponible", e);
+      // localStorage no disponible
     }
     var enabled = saved === 'true'; /* Arranca desactivado si no hay valor guardado */
     applyCRT(enabled);
