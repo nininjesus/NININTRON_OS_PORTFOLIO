@@ -47,7 +47,7 @@ const fullEmptyStr = '░'.repeat(totalBlocks);
     <span aria-hidden="true">[</span>
     
     {animated ? (
-      <div class="cmd-progress-layers" style={`--steps: ${totalBlocks};`}>
+      <div class="cmd-progress-layers" data-steps={totalBlocks}>
         <span class="cmd-progress-empty-layer" aria-hidden="true">{fullEmptyStr}</span>
         <span class="cmd-progress-fill-layer" aria-hidden="true">{fullFilledStr}</span>
       </div>
@@ -68,3 +68,9 @@ const fullEmptyStr = '░'.repeat(totalBlocks);
     </span>
   )}
 </div>
+
+<script>
+  document.querySelectorAll('[data-steps]').forEach(el => {
+    (el as HTMLElement).style.setProperty('--steps', (el as HTMLElement).dataset.steps || '20');
+  });
+</script>

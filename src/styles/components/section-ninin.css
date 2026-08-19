@@ -13,7 +13,7 @@
 .ninin-quote {
   color: var(--fg-text);
   font-size: var(--font-size-h3);
-  line-height: 1.5;
+  line-height: var(--line-height-body);
   margin-bottom: var(--space-4);
 }
 
@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--transition-normal);
 }
 
 .social-icon:hover {
@@ -73,3 +73,5 @@
     font-size: var(--font-size-body);
   }
 }
+
+

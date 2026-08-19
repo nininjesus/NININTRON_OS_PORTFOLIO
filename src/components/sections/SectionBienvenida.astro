@@ -4,6 +4,9 @@ import Panel from '../ui/Panel.astro';
 import PanelMain from '../ui/PanelMain.astro';
 import { t } from '../../i18n/index';
 
+import { Image } from 'astro:assets';
+import nininLogo from '../../assets/images/ninin-logo.svg';
+
 interface Props {
   lang?: 'es' | 'en';
 }
@@ -17,7 +20,7 @@ const version = t(lang, 'hero.version');
 <Panel sectionId="bienvenida" ariaLabel={ariaLabel} title="MAIN.EXE">
   <PanelMain>
     <div class="bienvenida-content">
-      <img src="/images/ninin-logo.svg" alt="" class="ascii-art-logo" aria-hidden="true" width="341" height="301" loading="eager" fetchpriority="high" />
+      <Image src={nininLogo} alt="" class="ascii-art-logo" aria-hidden="true" width={341} height={301} loading="eager" fetchpriority="high" />
       <div class="bienvenida-text">
         <h1 class="os-name">{title}</h1>
         <h2 class="os-version">{version}</h2>

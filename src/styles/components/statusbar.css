@@ -4,7 +4,7 @@
   height: var(--statusbar-height);
   width: 100%;
   position: relative;
-  z-index: 120;
+  z-index: var(--z-statusbar);
 }
 
 .statusbar-content {
@@ -14,3 +14,4 @@
   height: 100%;
   text-transform: uppercase;
 }
+

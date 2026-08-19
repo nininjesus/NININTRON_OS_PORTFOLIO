@@ -2,41 +2,29 @@
 @import './layout.css';
 @import './animations.css';
 
-/* Primitive components */
-@import './components/btn.css';
-@import './components/progress-bar.css';
-@import './components/prompt.css';
-@import './components/output.css';
-@import './components/separator.css';
-@import './components/input-line.css';
-@import './components/statusbar.css';
-@import './components/cursor.css';
-@import './components/terminal-block.css';
-
-/* Nota de arquitectura: Astro se encarga del bundling de todos estos imports usando
-   la opción `inlineStylesheets: 'auto'`. Estos imports se mantienen separados aquí 
-   exclusivamente para mejorar la Developer Experience (DX) y la co-localización de estilos. */
-
-/* UI components */
-@import './components/crt.css';
-@import './components/nav-option.css';
-@import './components/panel-nav.css';
-@import './components/preview-card.css';
-@import './components/window-detail.css';
-@import './components/panel-main.css';
-@import './components/topbar.css';
-@import './components/panel.css';
-
-/* Section components */
-@import './components/section-bienvenida.css';
-@import './components/section-ninin.css';
-@import './components/section-contacto.css';
-@import './components/section-transition.css';
-
 /* Typography base rules */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
+  font-weight: var(--font-weight-h3);
+}
+
+.cmd-line {
+  display: flex;
+  align-items: flex-start;
   margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
+}
+
+.cmd-line-symbol {
+  user-select: none;
+  margin-right: 1ch;
+}
+
+.cmd-line-content {
+  color: var(--fg-text);
+  word-break: break-word;
 }
 
 *, *::before, *::after {
@@ -75,8 +63,8 @@ button, input, textarea {
 
 /* Scrollbar styles for Webkit (Chrome, Edge, Safari) */
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: var(--space-1);
+  height: var(--space-1);
 }
 
 *::-webkit-scrollbar-track {

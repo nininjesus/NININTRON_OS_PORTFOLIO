@@ -1,9 +1,9 @@
 # CLAUDE.md
 
 ## Build and Development Commands
-- Start dev server: `npm run dev` (or `pnpm dev` / `pnpm --filter portfolio-ninin dev`)
-- Build production: `npm run build`
-- Typecheck: `npm run astro check`
+- Start dev server: `pnpm dev`
+- Build production: `pnpm build`
+- Typecheck: `pnpm astro check`
 
 ## Project Context & Goal
 - **Objective:** Faithfully replicate Figma layouts (`DesignSystem.svg`, `Desktop.svg`, `Responsive.svg`) in Astro.

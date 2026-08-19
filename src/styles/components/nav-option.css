@@ -1,8 +1,3 @@
-.nav-item {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
 
 .nav-option {
   display: flex;
@@ -15,7 +10,7 @@
   font-family: var(--font-family);
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-body);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
   cursor: pointer;
 }
 
@@ -39,22 +34,15 @@
   outline-offset: -1px;
 }
 
-/* Estado Active (Clic) */
-.nav-option:active {
-  background-color: var(--fg-primary);
-  color: var(--fg-text);
-}
-
-.nav-option:active .nav-option-index {
-  color: var(--fg-tertiary);
-}
-
-/* Estado Is-Active (Sección actual) */
+/* Estado Active (Clic) y Estado Is-Active (Sección actual) */
+.nav-option:active,
 .nav-option.is-active {
   background-color: var(--fg-primary);
   color: var(--fg-text);
 }
 
+.nav-option:active .nav-option-index,
 .nav-option.is-active .nav-option-index {
-  color: var(--fg-tertiary); 
+  color: var(--fg-tertiary);
 }
+

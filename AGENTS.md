@@ -1,9 +1,9 @@
 # AGENTS.md
 
 ## Setup and Development
-- Install dependencies: `npm install` (or `pnpm install`)
-- Start development server: `npm run dev` (or `pnpm dev`)
-- Build for production: `npm run build`
+- Install dependencies: `pnpm install`
+- Start development server: `pnpm dev`
+- Build for production: `pnpm build`
 
 ## Project Context & Core Goal
 - **Goal:** Faithfully replicate Figma layouts (`DesignSystem.svg`, `Desktop.svg`, `Responsive.svg`) in Astro.

@@ -24,7 +24,7 @@
 
 .window-detail {
   position: absolute;
-  z-index: 50;
+  z-index: var(--z-window);
 
   display: flex;
   flex-direction: column;
@@ -55,15 +55,15 @@
 
   /* Transiciones suaves para cambios de estado */
   transition:
-    width 0.2s ease,
-    height 0.2s ease,
-    top 0.2s ease,
-    left 0.2s ease,
-    bottom 0.2s ease,
-    right 0.2s ease,
-    transform 0.2s ease,
-    border-radius 0.2s ease,
-    box-shadow 0.2s ease;
+    width var(--transition-normal),
+    height var(--transition-normal),
+    top var(--transition-normal),
+    left var(--transition-normal),
+    bottom var(--transition-normal),
+    right var(--transition-normal),
+    transform var(--transition-normal),
+    border-radius var(--transition-normal),
+    box-shadow var(--transition-normal);
 }
 
 /* ── Estados ─────────────────────────────────────────────── */
@@ -188,7 +188,7 @@
   line-height: 1;
   cursor: pointer;
   color: var(--fg-primary);
-  transition: color 0.15s ease, opacity 0.15s ease;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
 }
 
 .window-ctrl:hover {
@@ -208,8 +208,8 @@
 }
 
 .window-ctrl:focus-visible {
-  outline: 1px solid var(--fg-primary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
   border-radius: 1px;
 }
 
@@ -289,3 +289,7 @@
     padding: var(--space-3);
   }
 }
+
+
+
+

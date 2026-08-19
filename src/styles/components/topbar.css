@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding: 0 var(--space-3);
   position: relative;
-  z-index: 110; 
+  z-index: var(--z-topbar); 
 }
 
 .topbar-left, .topbar-right {
@@ -57,7 +57,7 @@
   cursor: pointer;
   padding: 2px 6px;
   letter-spacing: 0.05em;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .crt-toggle:hover {
@@ -71,8 +71,8 @@
 }
 
 .crt-toggle:focus-visible {
-  outline: 1px solid var(--fg-primary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* Language Switcher */
@@ -89,7 +89,7 @@
   text-decoration: none;
   padding: 2px 4px;
   border: var(--stroke-width) solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .lang-btn:hover {
@@ -102,8 +102,8 @@
 }
 
 .lang-btn:focus-visible {
-  outline: 1px solid var(--fg-primary);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* Responsividad Tablet y Phone */

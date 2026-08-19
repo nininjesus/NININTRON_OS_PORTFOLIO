@@ -43,19 +43,16 @@
               resultWrapper.classList.add("success");
               result.textContent = json.message;
             } else {
-              console.error(response);
               resultWrapper.classList.add("error");
               result.textContent = json.message;
             }
           } catch (error) {
-            console.error("Error parsing response:", error);
             resultWrapper.classList.remove("loading");
             resultWrapper.classList.add("error");
             result.textContent = msgError;
           }
         })
         .catch((error) => {
-          console.error("Fetch error:", error);
           resultWrapper.classList.remove("loading");
           resultWrapper.classList.add("error");
           result.textContent = msgError;

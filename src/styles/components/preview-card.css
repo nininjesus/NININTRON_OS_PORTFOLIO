@@ -25,7 +25,7 @@
   color: var(--fg-primary);
   font-family: var(--font-family);
   font-size: var(--font-size-body);
-  font-weight: normal;
+  font-weight: var(--font-weight-body);
   margin: 0 0 var(--space-2) 0;
 }
 
@@ -61,3 +61,4 @@
     margin-top: var(--space-4);
   }
 }
+

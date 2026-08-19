@@ -13,9 +13,9 @@ interface Props {
 const { text, showCursor = false, contentId, class: className, isStatic = false } = Astro.props;
 ---
 
-<div class={`cmd-output ${className || ''}`.trim()} data-cli-line={isStatic ? undefined : "reveal"}>
-  <span class="cmd-output-symbol" aria-hidden="true">&gt;</span>
-  <span class="cmd-output-content" id={contentId}>
+<div class={`cmd-output cmd-line ${className || ''}`.trim()} data-cli-line={isStatic ? undefined : "reveal"}>
+  <span class="cmd-output-symbol cmd-line-symbol" aria-hidden="true">&gt;</span>
+  <span class="cmd-output-content cmd-line-content" id={contentId}>
     {text ? text : <slot />}
     {showCursor && <Cursor />}
   </span>

@@ -55,7 +55,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 9998;
+  z-index: var(--z-overlay);
   pointer-events: none;
   border-radius: inherit;
   
@@ -83,7 +83,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 9999;
+  z-index: var(--z-transition);
   pointer-events: none;
   border-radius: inherit;
 
@@ -124,3 +124,5 @@
     animation: none; /* Detiene flicker y roll */
   }
 }
+
+
